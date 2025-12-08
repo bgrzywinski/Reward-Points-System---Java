@@ -34,7 +34,9 @@ public class Main {
                 System.out.println("1. Dokonaj zakupu (Zdobądź punkty)");
                 System.out.println("2. Odbierz nagrodę (Wydaj punkty)");
                 System.out.println("3. Pokaż listę klientów");
-                System.out.println("4. Wyjdź");
+                System.out.println("4. Pokaż ranking klientów");
+                System.out.println("5. Pokaż listę nagród");
+                System.out.println("6. Wyjdź");
                 System.out.print("Twój wybór: ");
 
                 int choice;
@@ -58,6 +60,12 @@ public class Main {
                         repository.printList(repository.getCustomers());
                         break;
                     case 4:
+                        repository.printCustomerRanking();
+                        break;
+                    case 5:
+                        repository.printRewardRanking();
+                        break;
+                    case 6:
                         running = false;
                         System.out.println("Do widzenia!");
                         break;

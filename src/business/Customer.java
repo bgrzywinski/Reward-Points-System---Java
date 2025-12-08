@@ -56,6 +56,7 @@ public class Customer implements Comparable<Customer> {
         return transactions;
     }
 
+
     @Override
     public String toString() {
         return "Klient: " + name + " (Punkty: " + pointsBalance + ", Poziom: " + tier + ")";

@@ -26,6 +26,34 @@ public class Repository {
         return rewards;
     }
 
+    public void printRewardRanking(){
+        if(rewards.isEmpty()){
+            System.out.println("Brak nagrod");
+            return;
+        }
+        List<Reward> sorted = new ArrayList<>(rewards);
+        sorted.sort((a,b)->Double.compare(b.getPrice(),a.getPrice()));
+
+        System.out.println("Dostepne nagrody (od najdrozszej):");
+        for (Reward r : sorted){
+            System.out.println(r.getName() + " | Pkt: " + r.getPrice());
+        }
+    }
+
+    public void printCustomerRanking(){
+        if(rewards.isEmpty()){
+            System.out.println("Brak klientow");
+            return;
+        }
+        List<Customer> sorted = new ArrayList<>(customers);
+        sorted.sort((a,b)->Double.compare(b.getPointsBalance(),a.getPointsBalance()));
+
+        System.out.println("Ranking klientow:");
+        for (Customer c : sorted){
+            System.out.println(c.getName() + " | Zebrane punkty: " + c.getPointsBalance());
+        }
+    }
+
     // Metoda generyczna z UML (<T>)
     // Potrafi wyświetlić listę Klientów, Nagród, albo Transakcji
     public <T> void printList(List<T> list) {
