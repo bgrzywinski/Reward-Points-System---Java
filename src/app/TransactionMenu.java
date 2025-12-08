@@ -23,6 +23,12 @@ public class TransactionMenu {
         this.repository = repository;
         this.scanner = new Scanner(System.in);
     }
+    
+    // Constructor that accepts a Scanner (for sharing Scanner instance)
+    public TransactionMenu(Repository repository, Scanner scanner) {
+        this.repository = repository;
+        this.scanner = scanner;
+    }
 
     public void printWelcomeMessage() {
         System.out.println("==========================================");
@@ -45,11 +51,26 @@ public class TransactionMenu {
 
         // 2. Pobierz dane
         System.out.print("Podaj nazwę produktu: ");
-        String productName = scanner.nextLine(); // czyszczenie bufora
-        productName = scanner.nextLine();
+        String productName = scanner.nextLine().trim();
+        if (productName.isEmpty()) {
+            System.out.println("Nazwa produktu nie może być pusta!");
+            return;
+        }
 
         System.out.print("Podaj kwotę płatności: ");
-        double amount = scanner.nextDouble();
+        double amount;
+        try {
+            amount = scanner.nextDouble();
+            scanner.nextLine(); // Consume the newline character
+            if (amount <= 0) {
+                System.out.println("Kwota musi być większa od zera!");
+                return;
+            }
+        } catch (java.util.InputMismatchException e) {
+            scanner.nextLine(); // Clear invalid input
+            System.out.println("Błędne dane! Podaj prawidłową kwotę (liczba).");
+            return;
+        }
 
         // 3. Stwórz płatność (twarde dane dla uproszczenia, bo nie ma tego w menu UML)
         CreditCardPayment payment = new CreditCardPayment(
@@ -89,24 +110,23 @@ public class TransactionMenu {
         repository.printList(repository.getRewards());
 
         System.out.print("Podaj ID nagrody, którą chcesz odebrać: ");
-        Long rewardId = scanner.nextLong();
+        Long rewardId;
+        try {
+            rewardId = scanner.nextLong();
+            scanner.nextLine(); // Consume the newline character
+        } catch (java.util.InputMismatchException e) {
+            scanner.nextLine(); // Clear invalid input
+            System.out.println("Błędne dane! Podaj prawidłowe ID (liczba).");
+            return;
+        }
 
         // Szukamy nagrody prostą pętlą (bez streamów!)
         Reward selectedReward = null;
         for (Reward r : repository.getRewards()) {
-            // Zakładamy, że Reward ma getter getId(), jak nie to użyj equals na nazwie
-            // W poprzednim kroku w Reward.java dałem pole id, ale nie dałem gettera getId().
-            // Sprawdź klasę Reward - jeśli brakuje getId(), dopisz go tam szybko!
-             if (r.toString().contains(String.valueOf(rewardId))) { 
-                 // Mały hack jeśli nie masz getId, ale lepiej dodać getId() w Reward.java
-                 // Tutaj zakładam wersję poprawną z getterem:
-                 // if (r.getId().equals(rewardId)) { selectedReward = r; break; }
-                 
-                 // Skoro piszemy prosto, uznajmy że wybieramy pierwszą z brzegu dla testu
-                 // albo dopisz w Reward.java: public Long getId() { return id; }
-                 selectedReward = r; // Uproszczenie: bierze ostatnią
-                 break;
-             }
+            if (r.getId().equals(rewardId)) {
+                selectedReward = r;
+                break;
+            }
         }
         
         if (selectedReward == null) {

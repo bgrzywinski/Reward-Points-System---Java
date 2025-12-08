@@ -24,12 +24,11 @@ public class Main {
         repository.getRewards().add(new Reward(3L, "Wycieczka", 1, 5000.0));
 
         // 3. Uruchamiamy Menu
-        TransactionMenu menu = new TransactionMenu(repository);
-        menu.printWelcomeMessage();
-
         boolean running = true;
 
         try (Scanner scanner = new Scanner(System.in)) {
+            TransactionMenu menu = new TransactionMenu(repository, scanner);
+            menu.printWelcomeMessage();
             while (running) {
                 System.out.println("\nWYBIERZ AKCJĘ:");
                 System.out.println("1. Dokonaj zakupu (Zdobądź punkty)");
@@ -38,7 +37,15 @@ public class Main {
                 System.out.println("4. Wyjdź");
                 System.out.print("Twój wybór: ");
 
-                int choice = scanner.nextInt();
+                int choice;
+                try {
+                    choice = scanner.nextInt();
+                    scanner.nextLine(); // Consume the newline character
+                } catch (java.util.InputMismatchException e) {
+                    scanner.nextLine(); // Clear invalid input
+                    System.out.println("Błędne dane! Podaj liczbę od 1 do 4.");
+                    continue;
+                }
 
                 switch (choice) {
                     case 1:
