@@ -3,8 +3,10 @@ package src.business;
 
 import src.basic.Address;
 import src.basic.Tier;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Customer implements Comparable<Customer> {
     private Long id;
@@ -40,6 +42,22 @@ public class Customer implements Comparable<Customer> {
     @Override
     public int compareTo(Customer other) {
         return Double.compare(this.pointsBalance, other.pointsBalance);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Customer customer)) return false;
+        return Double.compare(pointsBalance, customer.pointsBalance) == 0
+                && Objects.equals(id, customer.id)
+                && Objects.equals(name, customer.name)
+                && address.equals(customer.address)
+                && Objects.equals(transactions, customer.transactions)
+                && tier == customer.tier;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, address, pointsBalance, transactions, tier);
     }
 
     public Long getId() {
