@@ -16,10 +16,8 @@ public abstract class Payment {
         this.status = status;
     }
 
-    // Metoda abstrakcyjna z UML
     public abstract boolean process();
 
-    // Gettery dla klas dziedziczących
     public double getAmount() {
         return amount;
     }

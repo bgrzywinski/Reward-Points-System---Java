@@ -7,7 +7,6 @@ public class CreditCardPayment extends Payment {
 
     public CreditCardPayment(Long id, double amount, Currency currency, String timestamp, String status, 
                              String cardNumber, String cardType) {
-        // Wywołanie konstruktora klasy nadrzędnej (Payment)
         super(id, amount, currency, timestamp, status);
         this.cardNumber = cardNumber;
         this.cardType = cardType;
@@ -15,9 +14,8 @@ public class CreditCardPayment extends Payment {
 
     @Override
     public boolean process() {
-        // Prosta symulacja procesowania płatności
         System.out.println("Przetwarzanie płatności kartą: " + cardNumber + " (" + cardType + ")");
         System.out.println("Kwota: " + getAmount() + " " + getCurrency());
-        return true; // Zakładamy, że się udało
+        return true;
     }
 }

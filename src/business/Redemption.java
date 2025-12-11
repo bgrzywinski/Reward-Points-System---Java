@@ -11,7 +11,6 @@ public class Redemption extends Transaction {
 
     @Override
     public double calculatePointChange() {
-        // Zwracamy wartość ujemną (odejmujemy punkty)
         return -reward.getPrice();
     }
     

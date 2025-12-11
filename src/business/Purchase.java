@@ -1,6 +1,6 @@
 package src.business;
 
-import src.basic.Address; // <-- Importujemy Address
+import src.basic.Address;
 
 public class Purchase extends Transaction {
     private Payment payment;

@@ -10,10 +10,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // 1. Tworzymy Repozytorium (bazę)
         Repository repository = new Repository();
 
-        // 2. Dodajemy przykładowe dane (Adres, Klient, Nagrody)
         Address addr1 = new Address(1L, "Krakow", "Rynek", "30-001");
         Customer cust1 = new Customer(1L, "Jan Kowalski", addr1, Tier.Gold);
         
@@ -23,7 +21,6 @@ public class Main {
         repository.getRewards().add(new Reward(2L, "Kupon 50PLN", 1, 500.0));
         repository.getRewards().add(new Reward(3L, "Wycieczka", 1, 5000.0));
 
-        // 3. Uruchamiamy Menu
         boolean running = true;
 
         try (Scanner scanner = new Scanner(System.in)) {
@@ -42,10 +39,10 @@ public class Main {
                 int choice;
                 try {
                     choice = scanner.nextInt();
-                    scanner.nextLine(); // Consume the newline character
+                    scanner.nextLine();
                 } catch (java.util.InputMismatchException e) {
-                    scanner.nextLine(); // Clear invalid input
-                    System.out.println("Błędne dane! Podaj liczbę od 1 do 4.");
+                    scanner.nextLine();
+                    System.out.println("Błędne dane! Podaj liczbę od 1 do 6.");
                     continue;
                 }
 

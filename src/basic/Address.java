@@ -5,7 +5,6 @@ public class Address {
     private String street;
     private String zipCode;
 
-    // Konstruktor
     public Address(Long id, String city, String street, String zipCode) {
         this.id = id;
         this.city = city;
@@ -13,7 +12,6 @@ public class Address {
         this.zipCode = zipCode;
     }
 
-    // Gettery (zgodnie z prostą semantyką piszemy je ręcznie)
     public Long getId() {
         return id;
     }
@@ -30,7 +28,6 @@ public class Address {
         return zipCode;
     }
 
-    // Opcjonalnie toString, żeby ładnie wypisywać w konsoli
     @Override
     public String toString() {
         return street + ", " + city + " " + zipCode;
