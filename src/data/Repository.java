@@ -1,7 +1,5 @@
 package src.data;
 
-
-
 import src.business.Customer;
 import src.business.Reward;
 import java.util.ArrayList;
@@ -26,13 +24,13 @@ public class Repository {
 
     public void printRewardRanking(){
         if(rewards.isEmpty()){
-            System.out.println("Brak nagrod");
+            System.out.println("Brak nagród");
             return;
         }
         List<Reward> sorted = new ArrayList<>(rewards);
         sorted.sort((a,b)->Double.compare(b.getPrice(),a.getPrice()));
 
-        System.out.println("Dostepne nagrody (od najdrozszej):");
+        System.out.println("Dostepne nagrody (od najdroższej):");
         for (Reward r : sorted){
             System.out.println(r.getName() + " | Pkt: " + r.getPrice());
         }
@@ -40,13 +38,13 @@ public class Repository {
 
     public void printCustomerRanking(){
         if(rewards.isEmpty()){
-            System.out.println("Brak klientow");
+            System.out.println("Brak klientów");
             return;
         }
         List<Customer> sorted = new ArrayList<>(customers);
         sorted.sort((a,b)->Double.compare(b.getPointsBalance(),a.getPointsBalance()));
 
-        System.out.println("Ranking klientow:");
+        System.out.println("Ranking klientów:");
         for (Customer c : sorted){
             System.out.println(c.getName() + " | Zebrane punkty: " + c.getPointsBalance());
         }

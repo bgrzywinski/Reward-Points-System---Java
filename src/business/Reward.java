@@ -22,12 +22,16 @@ public class Reward {
         return name;
     }
 
+    public double getQuantity() {
+        return quantity;
+    }
+
     public double getPrice() {
         return price;
     }
 
     @Override
     public String toString() {
-        return name + " (" + price + " pkt)";
+        return id + ". " + name + " (" + price + " pkt)";
     }
 }

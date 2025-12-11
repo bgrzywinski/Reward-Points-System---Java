@@ -30,9 +30,9 @@ public class TransactionMenu {
     }
 
     public void printWelcomeMessage() {
-        System.out.println("==========================================");
-        System.out.println(" WITAJ W SYSTEMIE LOJALNOŚCIOWYM");
-        System.out.println("==========================================");
+        System.out.println("================================");
+        System.out.println("WITAJ W SYSTEMIE LOJALNOŚCIOWYM");
+        System.out.println("================================");
     }
 
     public void handlePurchase() {

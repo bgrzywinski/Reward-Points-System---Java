@@ -62,4 +62,8 @@ public class Customer implements Comparable<Customer> {
     public String toString() {
         return "Klient: " + name + " (Punkty: " + pointsBalance + ", Poziom: " + tier + ")";
     }
+
+    public Address getAddress() {
+        return address;
+    }
 }

@@ -24,4 +24,8 @@ public class Purchase extends Transaction {
     public String getProductName() {
         return productName;
     }
+
+    public Address getStoreAddress() {
+        return storeAddress;
+    }
 }
