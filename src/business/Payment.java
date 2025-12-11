@@ -25,4 +25,12 @@ public abstract class Payment {
     public Currency getCurrency() {
         return currency;
     }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public String getStatus() {
+        return status;
+    }
 }

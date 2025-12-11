@@ -18,4 +18,12 @@ public class CreditCardPayment extends Payment {
         System.out.println("Kwota: " + getAmount() + " " + getCurrency());
         return true;
     }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public String getCardType() {
+        return cardType;
+    }
 }

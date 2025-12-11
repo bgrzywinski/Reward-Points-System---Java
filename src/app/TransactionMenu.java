@@ -4,13 +4,10 @@ package src.app;
 import src.basic.Address;
 import src.basic.Currency;
 import src.basic.InsufficientPointsException;
-import src.business.CreditCardPayment;
-import src.business.Customer;
-import src.business.Purchase;
-import src.business.Redemption;
-import src.business.Reward;
+import src.business.*;
 import src.data.Repository;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -61,7 +58,7 @@ public class TransactionMenu {
                 System.out.println("Kwota musi być większa od zera!");
                 return;
             }
-        } catch (java.util.InputMismatchException e) {
+        } catch (InputMismatchException e) {
             scanner.nextLine();
             System.out.println("Błędne dane! Podaj prawidłową kwotę (liczba).");
             return;
@@ -77,6 +74,13 @@ public class TransactionMenu {
 
         String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         Purchase purchase = new Purchase(date, payment, productName, storeAddress);
+
+        Payment payment1 = purchase.getPayment();
+
+        if (payment1 instanceof CreditCardPayment) {
+            CreditCardPayment paymentDownCasting = (CreditCardPayment) payment1; //only for presentation purpose
+            System.out.println("Downcasting example: " + paymentDownCasting.getCardNumber());
+        }
 
         customer.addTransaction(purchase);
         

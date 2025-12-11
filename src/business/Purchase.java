@@ -20,7 +20,11 @@ public class Purchase extends Transaction {
     public double calculatePointChange() {
         return payment.getAmount() * CONVERSION_RATE;
     }
-    
+
+    public Payment getPayment() {
+        return payment;
+    }
+
     public String getProductName() {
         return productName;
     }
