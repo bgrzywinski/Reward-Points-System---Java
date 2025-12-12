@@ -2,6 +2,8 @@ package src.data;
 
 import src.business.Customer;
 import src.business.Reward;
+import src.business.RewardPriceComparator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +29,10 @@ public class Repository {
             System.out.println("Brak nagród");
             return;
         }
-        List<Reward> sorted = new ArrayList<>(rewards);
-        sorted.sort((a,b)->Double.compare(b.getPrice(),a.getPrice()));
+        rewards.sort(new RewardPriceComparator());
 
         System.out.println("Dostepne nagrody (od najdroższej):");
-        for (Reward r : sorted){
+        for (Reward r : rewards){
             System.out.println(r.getName() + " | Pkt: " + r.getPrice());
         }
     }
@@ -42,7 +43,7 @@ public class Repository {
             return;
         }
         List<Customer> sorted = new ArrayList<>(customers);
-        sorted.sort((a,b)->Double.compare(b.getPointsBalance(),a.getPointsBalance()));
+        sorted.sort((a,b) -> Double.compare(b.getPointsBalance(),a.getPointsBalance()));
 
         System.out.println("Ranking klientów:");
         for (Customer c : sorted){
