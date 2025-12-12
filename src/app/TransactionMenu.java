@@ -27,9 +27,7 @@ public class TransactionMenu {
     }
 
     public void printWelcomeMessage() {
-        System.out.println("================================");
         System.out.println("WITAJ W SYSTEMIE LOJALNOŚCIOWYM");
-        System.out.println("================================");
     }
 
     public void handlePurchase() {
@@ -79,7 +77,7 @@ public class TransactionMenu {
 
         if (payment1 instanceof CreditCardPayment) {
             CreditCardPayment paymentDownCasting = (CreditCardPayment) payment1; //only for presentation purpose
-            System.out.println("Downcasting example: " + paymentDownCasting.getCardNumber());
+            System.out.println("Przyklad downcastingu: " + paymentDownCasting.getCardNumber());
         }
 
         customer.addTransaction(purchase);
